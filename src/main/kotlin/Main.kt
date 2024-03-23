@@ -1,6 +1,7 @@
 package org.example
 
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer
+import org.openstreetmap.osmosis.core.domain.v0_6.EntityType
 import org.openstreetmap.osmosis.core.task.v0_6.Sink
 import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
@@ -30,16 +31,14 @@ fun main() {
 //            }
             p0?.entity?.tags?.run {
 
-//                gdyniaCity.has(p0.entity) {
-                    println(p0.entity)
-                    p0.entity.tags.forEach {
-                        println("${it.key}: ${it.value}")
-                        if ("bus_stop".equals(it.value, true)){
-                            println()
+                if (gdyniaCity.has(p0.entity)) {
+                    if (p0.entity.tags.any { "addr:street".equals(it.key, true) }) {
+                        p0.entity.tags.forEach {
+                            println("${it.key}: ${it.value}")
                         }
                     }
                     println()
-//                }
+                }
 
             }
         }
