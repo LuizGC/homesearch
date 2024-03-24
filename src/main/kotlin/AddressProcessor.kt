@@ -10,18 +10,24 @@ class AddressProcessor(val addresses: MutableSet<Address>) : EntityProcessor {
 
 
     override fun process(node: NodeContainer?) {
-        extractAddress(node)
+        extractAddress(node)?.let {
+            addresses.add(it)
+        }
     }
 
     override fun process(way: WayContainer?) {
-        extractAddress(way)
+        extractAddress(way)?.let {
+            addresses.add(it)
+        }
     }
 
     override fun process(relation: RelationContainer?) {
-        extractAddress(relation)
+        extractAddress(relation)?.let {
+            addresses.add(it)
+        }
     }
 
-    private fun extractAddress(entityContainer: EntityContainer?) {
+    private fun extractAddress(entityContainer: EntityContainer?): Address? {
         var name: String? = null
         var number: String? = null
         var cityName: String? = null
@@ -32,9 +38,10 @@ class AddressProcessor(val addresses: MutableSet<Address>) : EntityProcessor {
                 "addr:city" -> cityName = it.value
             }
         }
-        createAddressIfNotBlank(name, number, cityName)?.run {
-            addresses.add(this)
+        createAddressIfNotBlank(name, number, cityName)?.let {
+             return it
         }
+        return null
     }
 
     private fun createAddressIfNotBlank(name: String?, number: String?, cityName: String?): Address? {
