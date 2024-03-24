@@ -12,6 +12,7 @@ class AddressProcessor(val addresses: MutableSet<Address>) : EntityProcessor {
     override fun process(node: NodeContainer?) {
         extractAddress(node)?.let {
             addresses.add(it)
+            println("${node?.entity?.latitude}, ${node?.entity?.longitude}")
         }
     }
 
