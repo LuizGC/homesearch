@@ -11,10 +11,9 @@ class AddressSink: Sink {
 
     override fun complete() {
         println("AddressSink is completed")
-//        addresses.forEach {
-//            println(it)
-//        }
-//        println(addresses.size)
+        addresses.forEach {
+            println(it)
+        }
     }
 
     override fun initialize(p0: MutableMap<String, Any>?) {

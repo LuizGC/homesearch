@@ -12,7 +12,7 @@ class AddressProcessor(val addresses: MutableSet<Address>) : EntityProcessor {
     override fun process(node: NodeContainer?) {
         extractAddress(node)?.let {
             addresses.add(it)
-            println("${node?.entity?.latitude}, ${node?.entity?.longitude}")
+            //println("${node?.entity?.latitude}, ${node?.entity?.longitude}")
         }
     }
 
@@ -32,24 +32,37 @@ class AddressProcessor(val addresses: MutableSet<Address>) : EntityProcessor {
         var name: String? = null
         var number: String? = null
         var cityName: String? = null
+        var supermarket = false
+        var supermarketBrandName: String? = null
         getTags(entityContainer).forEach {
             when (it.key) {
                 "addr:street" -> name = it.value
                 "addr:housenumber" -> number = it.value
                 "addr:city" -> cityName = it.value
+                "shop" -> supermarket = it.value == "supermarket"
+                "name" -> supermarketBrandName = it.value
             }
         }
-        createAddressIfNotBlank(name, number, cityName)?.let {
-             return it
+        createAddressIfNotBlank(name, number, cityName, supermarket, supermarketBrandName)?.let {
+            return it
         }
         return null
     }
 
-    private fun createAddressIfNotBlank(name: String?, number: String?, cityName: String?): Address? {
-        if (listOf(name, number, cityName).all { !it.isNullOrBlank() }) {
-            return Address(name.orEmpty(), number.orEmpty(), City(cityName.orEmpty()))
+    private fun createAddressIfNotBlank(
+        name: String?,
+        number: String?,
+        cityName: String?,
+        supermarket: Boolean,
+        supermarketBrandName: String?
+    ): Address? {
+        if (listOf(name, number, cityName).any { it.isNullOrBlank() }) {
+            return null
         }
-        return null
+        if (supermarket) {
+            return Supermarket(name.orEmpty(), number.orEmpty(), City(cityName.orEmpty()), supermarketBrandName.orEmpty())
+        }
+        return BaseAddress(name.orEmpty(), number.orEmpty(), City(cityName.orEmpty()))
     }
 
     private fun getTags(entityContainer: EntityContainer?): Collection<Tag> {
