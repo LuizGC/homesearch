@@ -1,4 +1,3 @@
-import org.example.City
 import org.openstreetmap.osmosis.core.container.v0_6.*
 import org.openstreetmap.osmosis.core.domain.v0_6.Tag
 
@@ -47,22 +46,6 @@ class AddressProcessor(val addresses: MutableSet<Address>) : EntityProcessor {
             return it
         }
         return null
-    }
-
-    private fun createAddressIfNotBlank(
-        name: String?,
-        number: String?,
-        cityName: String?,
-        supermarket: Boolean,
-        supermarketBrandName: String?
-    ): Address? {
-        if (listOf(name, number, cityName).any { it.isNullOrBlank() }) {
-            return null
-        }
-        if (supermarket) {
-            return Supermarket(name.orEmpty(), number.orEmpty(), City(cityName.orEmpty()), supermarketBrandName.orEmpty())
-        }
-        return BaseAddress(name.orEmpty(), number.orEmpty(), City(cityName.orEmpty()))
     }
 
     private fun getTags(entityContainer: EntityContainer?): Collection<Tag> {
