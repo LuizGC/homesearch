@@ -16,7 +16,7 @@ fun extractAddress(entityContainer: EntityContainer?): Address? {
             "name" -> supermarketBrandName = it.value
         }
     }
-    createAddressIfNotBlank(street, number, cityName, supermarket, supermarketBrandName)?.let {
+    createAddressIfPossible(street, number, cityName, supermarket, supermarketBrandName)?.let {
         return it
     }
     return null

@@ -19,7 +19,7 @@ data class Supermarket(
     val name: String
 ) : Address
 
-fun createAddressIfNotBlank(
+fun createAddressIfPossible(
     street: String?,
     number: String?,
     cityName: String?,
