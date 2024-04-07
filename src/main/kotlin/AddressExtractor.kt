@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 val BASE_ADDRESS_FEATURE_TYPE = DataUtilities.createType(
     "BaseAddress",
-    "Street:String,Number:String,City:String,Location:Point"
+    "Street:String,Number:String,City:String,Location:Point,name:String"
 )
 
 val GEOMETRY_BUILDER = GeometryBuilder()
@@ -22,7 +22,7 @@ fun extractAddress(nodeContainer: NodeContainer?): SimpleFeature? {
     var street: String? = null
     var number: String? = null
     var cityName: String? = null
-    var supermarket = false
+    var isSupermarket = false
     var supermarketBrandName: String? = null
 
     getTags(nodeContainer).forEach {
@@ -30,13 +30,16 @@ fun extractAddress(nodeContainer: NodeContainer?): SimpleFeature? {
             "addr:street" -> street = it.value
             "addr:housenumber" -> number = it.value
             "addr:city" -> cityName = it.value
-            "shop" -> supermarket = it.value == "supermarket"
+            "shop" -> isSupermarket = it.value == "supermarket"
             "name" -> supermarketBrandName = it.value
         }
     }
 
     createAddressIfPossible(street, number, cityName)?.let {
         it.add(createPoint(nodeContainer))
+        if (isSupermarket) {
+            it.add(supermarketBrandName)
+        }
         return it.buildFeature("${ID_GENERATOR.getAndIncrement()}")
     }
 

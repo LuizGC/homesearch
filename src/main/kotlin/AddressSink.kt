@@ -1,7 +1,9 @@
 import org.geotools.api.feature.simple.SimpleFeature
+import org.geotools.data.DataUtilities
 import org.geotools.geojson.feature.FeatureJSON
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer
 import org.openstreetmap.osmosis.core.task.v0_6.Sink
+
 
 class AddressSink : Sink {
 
@@ -13,9 +15,8 @@ class AddressSink : Sink {
 
     override fun complete() {
         println("AddressSink is completed")
-        addresses.forEach {
-            println(FeatureJSON().toString(it))
-        }
+        val featureCollection = DataUtilities.collection(addresses.toList())
+        println(FeatureJSON().toString(featureCollection))
     }
 
     override fun initialize(p0: MutableMap<String, Any>?) {
