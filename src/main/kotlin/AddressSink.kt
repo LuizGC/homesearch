@@ -21,7 +21,7 @@ class AddressSink : Sink {
         val file = File("src/main/resources/map-template.html")
         val html = file.bufferedReader().readText()
         val htmlWithGeosjon = html.replace("<GEOJSON>", geojson)
-        val fileWithGeojson = File("src/main/resources/map-geojson.html")
+        val fileWithGeojson = File("src/main/resources/index.html")
         fileWithGeojson.writeText(htmlWithGeosjon)
 
     }

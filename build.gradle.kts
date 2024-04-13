@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.22"
+    application
 }
 
 group = "org.example"
@@ -12,6 +13,9 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass = "org.example.MainKt"
+}
 
 dependencies {
     implementation("org.openstreetmap.osmosis:osmosis-core:0.49.2")
