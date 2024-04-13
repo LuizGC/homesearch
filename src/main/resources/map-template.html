@@ -37,18 +37,25 @@
 <div id="map"></div>
 <script>
 
-    const map = L.map('map').setView([51.505, -0.09], 13);
+    const map = L.map('map', {
+        'zoomControl': false
+    })
+    .setView([54.51, 18.47], 13);
+
+    L.control.zoom({
+        'position': 'topright'
+    }).addTo(map)
 
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        'maxZoom': 19,
+        'attribution': '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
     const markers = L.markerClusterGroup();
     const cityLayers = {}
-    L.geoJSON(<GEOJSON>,
+    const allAddressesLayer = L.geoJSON(<GEOJSON>,
         {
-            onEachFeature: function (feature, layer) {
+            'onEachFeature': (feature, layer) => {
                 const city = feature.properties.City
                 if (!cityLayers.hasOwnProperty(city)) {
                     cityLayers[city] = L.markerClusterGroup()
@@ -57,15 +64,19 @@
             }
         }
     );
-    const controls = L.control.layers();
+    const layerControl = L.control.layers();
+    layerControl.options = {
+        'position': 'topleft',
+        'collapsed': false
+    };
     for (const city of Object.keys(cityLayers).sort()) {
-        controls.addOverlay(cityLayers[city], city);
+        layerControl.addOverlay(cityLayers[city], city);
         if (city === 'Gdynia') {
             map.addLayer(cityLayers[city]);
-            map.fitBounds(cityLayers[city].getBounds());
         }
     }
-    controls.addTo(map);
+    layerControl.addTo(map);
+    map.fitBounds(allAddressesLayer.getBounds())
 </script>
 
 
