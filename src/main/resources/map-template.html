@@ -46,7 +46,7 @@
 
     const markers = L.markerClusterGroup();
     const cityLayers = {}
-    const addressLayer = L.geoJSON(<GEOJSON>,
+    L.geoJSON(<GEOJSON>,
         {
             onEachFeature: function (feature, layer) {
                 const city = feature.properties.City
@@ -62,10 +62,10 @@
         controls.addOverlay(cityLayers[city], city);
         if (city === 'Gdynia') {
             map.addLayer(cityLayers[city]);
+            map.fitBounds(cityLayers[city].getBounds());
         }
     }
     controls.addTo(map);
-    map.fitBounds(addressLayer.getBounds());
 </script>
 
 
