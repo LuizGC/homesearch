@@ -45,13 +45,26 @@
     }).addTo(map);
 
     const markers = L.markerClusterGroup();
-
-    const addressLayer = L.geoJSON(<GEOJSON>);
-
-    markers.addLayer(addressLayer);
-
-    map.addLayer(markers);
-
+    const cityLayers = {}
+    const addressLayer = L.geoJSON(<GEOJSON>,
+        {
+            onEachFeature: function (feature, layer) {
+                const city = feature.properties.City
+                if (!cityLayers.hasOwnProperty(city)) {
+                    cityLayers[city] = L.markerClusterGroup()
+                }
+                cityLayers[city].addLayer(layer);
+            }
+        }
+    );
+    const controls = L.control.layers();
+    for (const city of Object.keys(cityLayers).sort()) {
+        controls.addOverlay(cityLayers[city], city);
+        if (city === 'Gdynia') {
+            map.addLayer(cityLayers[city]);
+        }
+    }
+    controls.addTo(map);
     map.fitBounds(addressLayer.getBounds());
 </script>
 
