@@ -3,6 +3,7 @@ import org.geotools.data.DataUtilities
 import org.geotools.geojson.feature.FeatureJSON
 import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer
 import org.openstreetmap.osmosis.core.task.v0_6.Sink
+import java.io.File
 
 
 class AddressSink : Sink {
@@ -16,7 +17,13 @@ class AddressSink : Sink {
     override fun complete() {
         println("AddressSink is completed")
         val featureCollection = DataUtilities.collection(addresses.toList())
-        println(FeatureJSON().toString(featureCollection))
+        val geojson = FeatureJSON().toString(featureCollection)
+        val file = File("src/main/resources/map-template.html")
+        val html = file.bufferedReader().readText()
+        val htmlWithGeosjon = html.replace("<GEOJSON>", geojson)
+        val fileWithGeojson = File("src/main/resources/map-geojson.html")
+        fileWithGeojson.writeText(htmlWithGeosjon)
+
     }
 
     override fun initialize(p0: MutableMap<String, Any>?) {
