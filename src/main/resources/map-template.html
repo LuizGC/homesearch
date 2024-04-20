@@ -56,10 +56,14 @@
     const allAddressesLayer = L.geoJSON(<GEOJSON>,
         {
             'onEachFeature': (feature, layer) => {
-                const city = feature.properties.City
+                const city = feature.properties.city
                 if (!cityLayers.hasOwnProperty(city)) {
                     cityLayers[city] = L.markerClusterGroup()
                 }
+                layer.bindPopup(function (layer) {
+                    const {street, number, name} = layer.feature.properties
+                    return name + ' - ' + street + ', ' + number;
+                })
                 cityLayers[city].addLayer(layer);
             }
         }

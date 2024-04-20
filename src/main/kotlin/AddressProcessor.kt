@@ -9,7 +9,6 @@ import org.openstreetmap.osmosis.core.container.v0_6.WayContainer
 class AddressProcessor(val addresses: MutableSet<SimpleFeature>) : EntityProcessor {
 
     override fun process(p0: BoundContainer?) {
-        println("bound")
     }
 
 
@@ -20,15 +19,15 @@ class AddressProcessor(val addresses: MutableSet<SimpleFeature>) : EntityProcess
     }
 
     override fun process(way: WayContainer?) {
-//        extractAddress(way)?.let {
-//            addresses.add(it)
-//        }
+        extractAddress(way)?.let {
+            addresses.add(it)
+        }
     }
 
     override fun process(relation: RelationContainer?) {
-//        extractAddress(relation)?.let {
-//            addresses.add(it)
-//        }
+    //        extractAddress(relation)?.let {
+    //            addresses.add(it)
+    //        }
     }
 
 }
