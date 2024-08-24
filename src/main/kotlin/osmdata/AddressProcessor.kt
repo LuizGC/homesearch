@@ -1,3 +1,5 @@
+package osmdata
+
 import org.geotools.api.feature.simple.SimpleFeature
 import org.openstreetmap.osmosis.core.container.v0_6.BoundContainer
 import org.openstreetmap.osmosis.core.container.v0_6.EntityProcessor

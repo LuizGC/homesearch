@@ -1,3 +1,5 @@
+package osmdata
+
 import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.data.DataUtilities
 import org.geotools.feature.simple.SimpleFeatureBuilder

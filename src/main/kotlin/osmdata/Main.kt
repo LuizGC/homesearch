@@ -1,6 +1,5 @@
-package org.example
+package osmdata
 
-import AddressSink
 import org.geotools.data.DataUtilities
 import org.geotools.geojson.feature.FeatureJSON
 import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
