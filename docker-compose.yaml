@@ -2,7 +2,7 @@ services:
   db:
     image: postgis/postgis
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
@@ -12,7 +12,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     ports:
-      - 8888:80
+      - "8888:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: a@a.com
       PGADMIN_DEFAULT_PASSWORD: a
