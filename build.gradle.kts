@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.22"
+    kotlin("jvm") version "2.0.10"
     application
 }
 
@@ -20,7 +20,7 @@ application {
 dependencies {
     implementation("org.openstreetmap.osmosis:osmosis-core:0.49.2")
     implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.49.2")
-    implementation("org.geotools:gt-geojson:31.0")
+    implementation("org.geotools:gt-geojson:31.3")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
