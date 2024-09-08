@@ -20,10 +20,15 @@ fun main() {
     val username = "admin"
     val password = "admin"
     val sql = "INSERT INTO public.address(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326));"
+    val cleanTable = "delete from public.address;"
 
     // Register the PostgreSQL driver
     Class.forName("org.postgresql.Driver")
 
+    DriverManager.getConnection(jdbcUrl, username, password).use { conn ->
+        val pstmt = conn.prepareStatement(cleanTable)
+        pstmt.executeUpdate()
+    }
 
     // Connect to the database
     DriverManager.getConnection(jdbcUrl, username, password).use { conn ->
