@@ -4,7 +4,7 @@ plugins {
     application
 }
 
-group = "org.example"
+group = "com.homesearch"
 version = "1.0-SNAPSHOT"
 
 buildscript {

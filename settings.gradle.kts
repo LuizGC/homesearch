@@ -3,3 +3,4 @@ plugins {
 }
 rootProject.name = "homesearch"
 include("osmParser")
+include("addressService")
