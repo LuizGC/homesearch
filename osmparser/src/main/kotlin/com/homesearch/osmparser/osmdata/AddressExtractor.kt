@@ -1,4 +1,4 @@
-package osmdata
+package com.homesearch.osmparser.osmdata
 
 import org.geotools.api.feature.simple.SimpleFeature
 import org.geotools.data.DataUtilities

@@ -21,7 +21,7 @@ repositories {
 }
 
 application {
-    mainClass = "org.example.MainKt"
+    mainClass = "com.homesearch.osmparser.ParserKt"
 }
 
 dependencies {
@@ -29,6 +29,7 @@ dependencies {
     implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.49.2")
     implementation("org.geotools:gt-geojson:31.3")
     implementation("org.postgresql:postgresql:42.7.2")
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.test {

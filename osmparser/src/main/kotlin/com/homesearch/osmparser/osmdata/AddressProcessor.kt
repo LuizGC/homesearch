@@ -1,4 +1,4 @@
-package osmdata
+package com.homesearch.osmparser.osmdata
 
 import org.geotools.api.feature.simple.SimpleFeature
 import org.openstreetmap.osmosis.core.container.v0_6.BoundContainer

@@ -1,5 +1,6 @@
-package osmdata
+package com.homesearch.osmparser
 
+import com.homesearch.osmparser.osmdata.AddressSink
 import org.geotools.data.DataUtilities
 import org.geotools.geojson.feature.FeatureJSON
 import org.locationtech.jts.geom.Point
@@ -7,7 +8,6 @@ import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
 import java.nio.file.Files
 import java.sql.DriverManager
-
 
 fun main() {
     val file = File("osmParser/src/main/resources/pomorskie-latest.osm.pbf")
