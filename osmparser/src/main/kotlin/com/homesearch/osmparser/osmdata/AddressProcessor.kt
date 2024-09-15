@@ -27,9 +27,9 @@ class AddressProcessor(val addresses: MutableSet<SimpleFeature>) : EntityProcess
     }
 
     override fun process(relation: RelationContainer?) {
-    //        extractAddress(relation)?.let {
-    //            addresses.add(it)
-    //        }
+        //        extractAddress(relation)?.let {
+        //            addresses.add(it)
+        //        }
     }
 
 }

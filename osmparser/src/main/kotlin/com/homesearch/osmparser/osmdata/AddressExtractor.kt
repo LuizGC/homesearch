@@ -38,7 +38,8 @@ fun extractAddress(nodeContainer: NodeContainer?): SimpleFeature? {
     return processEntity(nodeContainer)?.let {
         it.set("location", createPoint(nodeContainer))
         it.buildFeature("${ID_GENERATOR.getAndIncrement()}")
-    }}
+    }
+}
 
 private fun processEntity(entityContainer: EntityContainer?): SimpleFeatureBuilder? {
     var street: String? = null
@@ -76,7 +77,7 @@ private fun createPoint(nodeContainer: NodeContainer?): Point {
 private fun createPoint(wayContainer: WayContainer?): Point {
     wayContainer?.entity?.wayNodes?.first {
         val node = NODES.get(it.nodeId)
-        return GEOMETRY_BUILDER.point(node?.longitude?:0.0, node?.latitude?:0.0)
+        return GEOMETRY_BUILDER.point(node?.longitude ?: 0.0, node?.latitude ?: 0.0)
 
     }
     return GEOMETRY_BUILDER.point()
