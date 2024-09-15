@@ -10,7 +10,7 @@ import java.sql.DriverManager
 
 
 fun main() {
-    val file = File("src/main/resources/pomorskie-latest.osm.pbf")
+    val file = File("osmParser/src/main/resources/pomorskie-latest.osm.pbf")
     val osmosisReader = PbfReader(file, Runtime.getRuntime().availableProcessors())
     val addressSink = AddressSink()
     osmosisReader.setSink(addressSink)
@@ -19,7 +19,8 @@ fun main() {
     val jdbcUrl = "jdbc:postgresql://localhost:5432/homesearch_db"
     val username = "admin"
     val password = "admin"
-    val sql = "INSERT INTO public.address(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326));"
+    val sql =
+        "INSERT INTO public.address(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326));"
     val cleanTable = "delete from public.address;"
 
     // Register the PostgreSQL driver
@@ -47,7 +48,7 @@ fun main() {
     }
 
 
-    //createCheckHtml(addressSink)
+//    createCheckHtml(addressSink)
 }
 
 private fun createCheckHtml(addressSink: AddressSink) {
@@ -56,7 +57,7 @@ private fun createCheckHtml(addressSink: AddressSink) {
     }
     val featureCollection = DataUtilities.collection(addresses)
     val geojson = FeatureJSON().toString(featureCollection)
-    val template = File("src/main/resources/map-template.html")
+    val template = File("osmParser/src/main/resources/map-template.html")
     val html = template.bufferedReader().readText()
     val htmlWithGeosjon = html.replace("<GEOJSON>", geojson)
     val fileWithGeojson = Files.createTempFile("map", ".html").toFile()
