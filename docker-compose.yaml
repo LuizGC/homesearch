@@ -25,6 +25,14 @@ services:
     ports:
       - "7777:8080"
 
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+
 volumes:
   local_pgdata:
   pgadmin_data:
