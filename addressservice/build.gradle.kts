@@ -7,7 +7,7 @@ group = "com.homesearch.addressservice"
 version = "1.0-SNAPSHOT"
 
 application {
-    mainClass.set("com.homesearch.addressService.ApplicationKt")
+    mainClass.set("com.homesearch.addressservice.ApplicationKt")
 }
 
 repositories {
@@ -24,6 +24,7 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
 kotlin {
     jvmToolchain(21)
 }

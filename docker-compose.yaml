@@ -19,6 +19,12 @@ services:
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
       - pgadmin_data:/var/lib/pgadmin
+
+  addressservice:
+    build: ./addressservice
+    ports:
+      - "7777:8080"
+
 volumes:
   local_pgdata:
   pgadmin_data:
