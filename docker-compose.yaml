@@ -1,27 +1,6 @@
 services:
-  db:
-    image: postgis/postgis
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: homesearch_db
-    volumes:
-      - local_pgdata:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4
-    ports:
-      - "8888:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: a@a.com
-      PGADMIN_DEFAULT_PASSWORD: a
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-
   addressservice:
-    build: ./addressservice
+    image: ghcr.io/luizgc/homesearch@sha256:63b65e9120086c73e6fa7df40673f2dda527b472264d7ed30c46ec1a0c3f55b4
     ports:
       - "7777:8080"
 
@@ -32,7 +11,23 @@ services:
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
-
-volumes:
-  local_pgdata:
-  pgadmin_data:
+#  db:
+#    image: postgis/postgis
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_USER: admin
+#      POSTGRES_PASSWORD: admin
+#      POSTGRES_DB: homesearch_db
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    ports:
+#      - "8888:80"
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: a@a.com
+#      PGADMIN_DEFAULT_PASSWORD: a
+#      PGADMIN_CONFIG_SERVER_MODE: 'False'
+#    volumes:
+#      - pgadmin_data:/var/lib/pgadmin
+#volumes:
+#  pgadmin_data:
