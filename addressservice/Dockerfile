@@ -5,7 +5,7 @@ ADD . /app
 WORKDIR /app
 RUN gradle clean build
 
-FROM eclipse-temurin:21
+FROM 21-alpine3.20
 COPY --from=0 /app/build/libs/app-all.jar /app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
