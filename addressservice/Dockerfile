@@ -1,13 +1,30 @@
-FROM gradle:latest
+FROM gradle:latest as build
 LABEL authors="luizcosta"
 
 ADD . /app
 WORKDIR /app
 RUN gradle clean build
 
-FROM eclipse-temurin:21
+FROM amazoncorretto:21-alpine as corretto-jdk
+
+RUN apk add --no-cache binutils
+
+RUN $JAVA_HOME/bin/jlink \
+         --verbose \
+         --add-modules ALL-MODULE-PATH \
+         --strip-debug \
+         --no-man-pages \
+         --no-header-files \
+         --compress=2 \
+         --output /customjre
+
+FROM alpine:latest
+ENV JAVA_HOME=/jre
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+COPY --from=corretto-jdk /customjre $JAVA_HOME
 COPY --from=0 /app/build/libs/app-all.jar /app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["/jre/bin/java", "-jar", "app.jar"]
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
 
