@@ -1,8 +1,6 @@
 services:
   addressservice:
-    image: ghcr.io/luizgc/homesearch@sha256:90455d3211774d6f199f2911d4a5f69c2bcae438ce0b19bea9538bf25465ab02
-    ports:
-      - "7777:8080"
+    image: ghcr.io/luizgc/homesearch@sha256:d87eb4fc11e322f0fdcbce02f82a2f590c72a572a93a7c8fffa80a505a4875bb
   tunnel:
     container_name: cloudflared-tunnel
     image: cloudflare/cloudflared
