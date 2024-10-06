@@ -8,7 +8,7 @@ class DBBatchOperation(val insertSql: String) {
 
     object DbConstants {
         init {
-            Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver")
         }
 
         const val JDBC_URL = "jdbc:postgresql://localhost:5432/homesearch_db"
@@ -21,7 +21,7 @@ class DBBatchOperation(val insertSql: String) {
             conn.autoCommit = false
             val pstmt = conn.prepareStatement(insertSql)
 
-            batchOperation(pstmt);
+            batchOperation(pstmt)
 
             pstmt.executeBatch()
             conn.commit()

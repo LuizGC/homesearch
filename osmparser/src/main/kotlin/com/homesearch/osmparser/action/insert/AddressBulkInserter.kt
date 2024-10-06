@@ -9,7 +9,7 @@ private const val INSERT_QUERY =
 
 class AddressBulkInserter {
 
-    val bulkInsert = DBBatchOperation(INSERT_QUERY);
+    val bulkInsert = DBBatchOperation(INSERT_QUERY)
 
     fun bulkInsert(addressSink: AddressSink) {
         println("Insert Addresses")

@@ -29,7 +29,7 @@ class AddressSink() : Sink {
     }
 
     fun getAddresses(): Set<SimpleFeature> {
-        return addresses;
+        return addresses
     }
 
     fun getSupermarkets(): Set<SimpleFeature> {

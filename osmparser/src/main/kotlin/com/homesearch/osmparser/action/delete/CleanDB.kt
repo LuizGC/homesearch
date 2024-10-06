@@ -15,7 +15,7 @@ class CleanDB {
 
     fun cleanAddresses() {
         println("Clean Addresses")
-        val dbBulkOperation = DBBatchOperation(CLEAN_ADDRESSES_TABLE_SQL);
+        val dbBulkOperation = DBBatchOperation(CLEAN_ADDRESSES_TABLE_SQL)
         dbBulkOperation.run {
             it.addBatch()
         }
@@ -23,7 +23,7 @@ class CleanDB {
 
     fun cleanSupermarkets() {
         println("Clean Supermarkets")
-        val dbBulkOperation = DBBatchOperation(CLEAN_SUPERMARKETS_TABLE_SQL);
+        val dbBulkOperation = DBBatchOperation(CLEAN_SUPERMARKETS_TABLE_SQL)
         dbBulkOperation.run {
             it.addBatch()
         }

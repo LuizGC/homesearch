@@ -14,7 +14,13 @@ import java.util.concurrent.atomic.AtomicInteger
 
 val BASE_ADDRESS_FEATURE_TYPE = DataUtilities.createType(
     "BaseAddress",
-    "street:String,number:String,city:String,name:String,location:Point,isSupermarket:Boolean"
+    "street:String," +
+    "number:String," +
+    "city:String," +
+    "name:String," +
+    "location:Point," +
+    "isSupermarket:Boolean," +
+    "isConvenience:Boolean"
 )
 
 val GEOMETRY_BUILDER = GeometryBuilder()
@@ -53,7 +59,10 @@ private fun processEntity(entityContainer: EntityContainer?): SimpleFeatureBuild
             "addr:street" -> street = it.value
             "addr:housenumber" -> number = it.value
             "addr:city" -> cityName = it.value
-            "shop" -> isSupermarket = it.value == "supermarket"
+            "shop" -> {
+                isSupermarket = it.value == "supermarket"
+            }
+
             "name" -> supermarketBrandName = it.value
         }
     }
