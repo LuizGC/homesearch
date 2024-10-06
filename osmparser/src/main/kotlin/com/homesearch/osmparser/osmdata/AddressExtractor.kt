@@ -52,7 +52,8 @@ private fun processEntity(entityContainer: EntityContainer?): SimpleFeatureBuild
     var number: String? = null
     var cityName: String? = null
     var isSupermarket = false
-    var supermarketBrandName: String? = null
+    var isConvenience = false
+    var featureName: String = "No Name"
 
     getTags(entityContainer).forEach {
         when (it.key) {
@@ -61,17 +62,16 @@ private fun processEntity(entityContainer: EntityContainer?): SimpleFeatureBuild
             "addr:city" -> cityName = it.value
             "shop" -> {
                 isSupermarket = it.value == "supermarket"
+                isConvenience = it.value == "convenience"
             }
-
-            "name" -> supermarketBrandName = it.value
+            "name" -> featureName = it.value
         }
     }
 
     createAddressIfPossible(street, number, cityName)?.let {
         it.set("isSupermarket", isSupermarket)
-        if (isSupermarket) {
-            it.set("name", supermarketBrandName)
-        }
+        it.set("isConvenience", isConvenience)
+        it.set("name", featureName)
         return it
     }
     return null

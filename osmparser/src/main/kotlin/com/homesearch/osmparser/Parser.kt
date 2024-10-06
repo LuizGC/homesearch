@@ -2,6 +2,7 @@ package com.homesearch.osmparser
 
 import com.homesearch.osmparser.action.delete.CleanDB
 import com.homesearch.osmparser.action.insert.AddressBulkInserter
+import com.homesearch.osmparser.action.insert.ConvenienceStoreBulkInserter
 import com.homesearch.osmparser.action.insert.SupermarketBulkInserter
 import com.homesearch.osmparser.osmdata.AddressSink
 import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
@@ -22,4 +23,8 @@ fun main() {
 
     val supermarketBulkInserter = SupermarketBulkInserter()
     supermarketBulkInserter.bulkInsert(addressSink)
+
+    val convenienceStoreBulkInserter = ConvenienceStoreBulkInserter()
+    convenienceStoreBulkInserter.bulkInsert(addressSink)
+
 }

@@ -38,4 +38,9 @@ class AddressSink() : Sink {
         }.toSet()
     }
 
+    fun getConvenienceStore(): Set<SimpleFeature> {
+        return addresses.filter {
+            it.getAttribute("isConvenience").toString().toBoolean()
+        }.toSet()
+    }
 }
