@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 val BASE_ADDRESS_FEATURE_TYPE = DataUtilities.createType(
     "BaseAddress",
-    "street:String,number:String,city:String,name:String,location:Point"
+    "street:String,number:String,city:String,name:String,location:Point,isSupermarket:Boolean"
 )
 
 val GEOMETRY_BUILDER = GeometryBuilder()
@@ -59,6 +59,7 @@ private fun processEntity(entityContainer: EntityContainer?): SimpleFeatureBuild
     }
 
     createAddressIfPossible(street, number, cityName)?.let {
+        it.set("isSupermarket", isSupermarket)
         if (isSupermarket) {
             it.set("name", supermarketBrandName)
         }

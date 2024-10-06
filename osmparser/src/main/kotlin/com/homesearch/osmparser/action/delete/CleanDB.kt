@@ -8,21 +8,24 @@ private const val CLEAN_SUPERMARKETS_TABLE_SQL = "delete from supermarkets;"
 class CleanDB {
 
     fun cleanAllTables() {
+        println("Clean Database Started")
         cleanSupermarkets()
         cleanAddresses()
     }
 
     fun cleanAddresses() {
+        println("Clean Addresses")
         val dbBulkOperation = DBBatchOperation(CLEAN_ADDRESSES_TABLE_SQL);
         dbBulkOperation.run {
-            it.executeBatch()
+            it.addBatch()
         }
     }
 
     fun cleanSupermarkets() {
+        println("Clean Supermarkets")
         val dbBulkOperation = DBBatchOperation(CLEAN_SUPERMARKETS_TABLE_SQL);
         dbBulkOperation.run {
-            it.executeBatch()
+            it.addBatch()
         }
     }
 

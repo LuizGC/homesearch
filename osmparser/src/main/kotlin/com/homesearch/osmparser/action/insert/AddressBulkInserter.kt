@@ -5,16 +5,16 @@ import com.homesearch.osmparser.osmdata.AddressSink
 import org.locationtech.jts.geom.Point
 
 private const val INSERT_QUERY =
-    "INSERT INTO ADDRESSES(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326));"
+    "INSERT INTO ADDRESSES(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326)) ON CONFLICT DO NOTHING;"
 
 class AddressBulkInserter {
 
     val bulkInsert = DBBatchOperation(INSERT_QUERY);
 
-
     fun bulkInsert(addressSink: AddressSink) {
+        println("Insert Addresses")
         bulkInsert.run { pstmt ->
-            addressSink.addresses.forEach {
+            addressSink.getAddresses().forEach {
                 val point = it.defaultGeometry
                 if (point is Point) {
                     pstmt.setString(1, it.getAttribute("street").toString())
