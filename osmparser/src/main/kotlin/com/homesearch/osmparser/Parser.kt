@@ -14,8 +14,7 @@ fun main() {
     osmosisReader.run()
 
     val cleanDB = CleanDB()
-
-    cleanDB.cleanAddress()
+    cleanDB.cleanAllTables()
 
     val addressBulkInserter = AddressBulkInserter()
     addressBulkInserter.bulkInsert(addressSink)

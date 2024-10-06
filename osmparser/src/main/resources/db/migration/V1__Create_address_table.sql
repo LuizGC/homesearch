@@ -1,5 +1,5 @@
-CREATE TABLE ADDRESS (
-  id serial,
+CREATE TABLE ADDRESSES (
+  id serial PRIMARY KEY,
   street VARCHAR,
   number VARCHAR,
   city VARCHAR,

@@ -5,7 +5,7 @@ import com.homesearch.osmparser.osmdata.AddressSink
 import org.locationtech.jts.geom.Point
 
 private const val INSERT_QUERY =
-    "INSERT INTO public.address(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326));"
+    "INSERT INTO ADDRESSES(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326));"
 
 class AddressBulkInserter {
 
