@@ -11,13 +11,11 @@ class PublicTransportationBulkInserter {
 
     fun bulkInsert(addressSink: AddressSink) {
         println("Insert Public Transportation")
-        val publicTransportationList = addressSink.getPublicTransportation()
-        val chunkSize: Int = publicTransportationList.size / Runtime.getRuntime().availableProcessors()
-        publicTransportationList.chunked(chunkSize)
+        generateChunk(addressSink.getPublicTransportation())
             .parallelStream()
-            .forEach { publicTransportationList ->
+            .forEach { publicTransportationChunk ->
                 bulkInsert.run { pstmt ->
-                    publicTransportationList.forEach {
+                    publicTransportationChunk.forEach {
                         pstmt.setString(1, it.name)
                         pstmt.setDouble(2, it.getLongitude())
                         pstmt.setDouble(3, it.getLatitude())
