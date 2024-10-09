@@ -1,0 +1,5 @@
+CREATE TABLE PUBLIC_TRANSPORTATIONS (
+  id serial PRIMARY KEY,
+  address_id integer REFERENCES ADDRESSES,
+  name VARCHAR
+);
