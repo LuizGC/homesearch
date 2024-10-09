@@ -12,7 +12,6 @@ class PublicTransportationBulkInserter {
     fun bulkInsert(addressSink: AddressSink) {
         println("Insert Public Transportation")
         generateChunk(addressSink.getPublicTransportation())
-            .parallelStream()
             .forEach { publicTransportationChunk ->
                 bulkInsert.run { pstmt ->
                     publicTransportationChunk.forEach {

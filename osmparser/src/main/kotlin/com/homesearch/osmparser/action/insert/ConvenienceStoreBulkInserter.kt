@@ -12,15 +12,19 @@ class ConvenienceStoreBulkInserter {
 
     fun bulkInsert(addressSink: AddressSink) {
         println("Insert Convenience Store")
-        bulkInsert.run { pstmt ->
-            addressSink.getConvenienceStore().forEach {
-                pstmt.setString(1, it.getAttribute("name")?.toString())
-                pstmt.setString(2, it.getAttribute("street").toString())
-                pstmt.setString(3, it.getAttribute("number").toString())
-                pstmt.setString(4, it.getAttribute("city").toString())
-                pstmt.addBatch()
+        generateChunk(addressSink.getConvenienceStore())
+            .forEach { chunk ->
+                bulkInsert.run { pstmt ->
+                    chunk.forEach {
+                        pstmt.setString(1, it.getAttribute("name")?.toString())
+                        pstmt.setString(2, it.getAttribute("street").toString())
+                        pstmt.setString(3, it.getAttribute("number").toString())
+                        pstmt.setString(4, it.getAttribute("city").toString())
+                        pstmt.addBatch()
+                    }
+                }
             }
-        }
+
     }
 
 
