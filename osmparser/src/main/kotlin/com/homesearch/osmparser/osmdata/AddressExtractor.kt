@@ -9,18 +9,17 @@ import org.openstreetmap.osmosis.core.container.v0_6.EntityContainer
 import org.openstreetmap.osmosis.core.container.v0_6.NodeContainer
 import org.openstreetmap.osmosis.core.container.v0_6.WayContainer
 import org.openstreetmap.osmosis.core.domain.v0_6.Node
-import org.openstreetmap.osmosis.core.domain.v0_6.Tag
 import java.util.concurrent.atomic.AtomicInteger
 
 val BASE_ADDRESS_FEATURE_TYPE = DataUtilities.createType(
     "BaseAddress",
     "street:String," +
-    "number:String," +
-    "city:String," +
-    "name:String," +
-    "location:Point," +
-    "isSupermarket:Boolean," +
-    "isConvenience:Boolean"
+            "number:String," +
+            "city:String," +
+            "name:String," +
+            "location:Point," +
+            "isSupermarket:Boolean," +
+            "isConvenience:Boolean"
 )
 
 val GEOMETRY_BUILDER = GeometryBuilder()
@@ -64,6 +63,7 @@ private fun processEntity(entityContainer: EntityContainer?): SimpleFeatureBuild
                 isSupermarket = it.value == "supermarket"
                 isConvenience = it.value == "convenience"
             }
+
             "name" -> featureName = it.value
         }
     }
@@ -91,13 +91,6 @@ private fun createPoint(wayContainer: WayContainer?): Point {
 
     }
     return GEOMETRY_BUILDER.point()
-}
-
-private fun getTags(entityContainer: EntityContainer?): Collection<Tag> {
-    entityContainer?.entity?.tags?.run {
-        return this
-    }
-    return mutableListOf()
 }
 
 private fun createAddressIfPossible(

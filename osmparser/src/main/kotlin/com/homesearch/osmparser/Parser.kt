@@ -27,4 +27,7 @@ fun main() {
     val convenienceStoreBulkInserter = ConvenienceStoreBulkInserter()
     convenienceStoreBulkInserter.bulkInsert(addressSink)
 
+    addressSink.getPublicTransportation().forEach { println(it) }
+    println(addressSink.getPublicTransportation().size)
+
 }

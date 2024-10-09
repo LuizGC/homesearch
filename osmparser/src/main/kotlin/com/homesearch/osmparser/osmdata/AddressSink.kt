@@ -7,8 +7,13 @@ import org.openstreetmap.osmosis.core.task.v0_6.Sink
 
 class AddressSink() : Sink {
 
-    private var addresses = mutableSetOf<SimpleFeature>()
-    private var addressProcessor = AddressProcessor(addresses)
+    private lateinit var addresses: MutableSet<SimpleFeature>
+    private lateinit var publicTransportation: MutableSet<OsmPublicTransportationData>
+    private lateinit var addressProcessor: AddressProcessor
+
+    init {
+        cleanData()
+    }
 
     override fun close() {
         println("AddressSink is closed")
@@ -20,8 +25,7 @@ class AddressSink() : Sink {
 
     override fun initialize(p0: MutableMap<String, Any>?) {
         println("initialize")
-        addresses = mutableSetOf()
-        addressProcessor = AddressProcessor(addresses)
+        cleanData()
     }
 
     override fun process(entityContainer: EntityContainer?) {
@@ -42,5 +46,15 @@ class AddressSink() : Sink {
         return addresses.filter {
             it.getAttribute("isConvenience").toString().toBoolean()
         }.toSet()
+    }
+
+    fun getPublicTransportation(): Set<OsmPublicTransportationData> {
+        return publicTransportation
+    }
+
+    private fun cleanData() {
+        addresses = mutableSetOf()
+        publicTransportation = mutableSetOf()
+        addressProcessor = AddressProcessor(addresses, publicTransportation)
     }
 }
