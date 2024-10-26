@@ -1,3 +1,5 @@
+CREATE EXTENSION postgis;
+
 CREATE TABLE ADDRESSES (
   id serial PRIMARY KEY,
   street VARCHAR,

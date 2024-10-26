@@ -1,0 +1,8 @@
+FROM postgres:17
+
+RUN apt update
+RUN apt install -y postgresql-17-postgis-3
+
+ENV POSTGRES_USER=admin
+ENV POSTGRES_PASSWORD=admin
+ENV POSTGRES_DB=homesearch_db
