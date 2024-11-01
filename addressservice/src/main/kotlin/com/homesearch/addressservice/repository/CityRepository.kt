@@ -2,7 +2,8 @@ package com.homesearch.addressservice.repository
 
 import java.sql.DriverManager
 
-private const val JDBC_URL = "jdbc:postgresql://localhost:5432/homesearch_db"
+private val DB_HOST = System.getenv("JDBC_URL") ?: "localhost"
+private val JDBC_URL = "jdbc:postgresql://${DB_HOST}:5432/homesearch_db"
 private const val USER_NAME = "admin"
 private const val PASSWORD = "admin"
 private const val CITY_QUERY = "SELECT DISTINCT INITCAP(city) city FROM addresses ORDER BY city;"

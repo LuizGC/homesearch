@@ -1,6 +1,8 @@
 services:
   addressservice:
-    image: ghcr.io/luizgc/homesearch@sha256:d87eb4fc11e322f0fdcbce02f82a2f590c72a572a93a7c8fffa80a505a4875bb
+    image: ghcr.io/luizgc/homesearch@sha256:8a2b707c9d45898f7138980508f0594d69f10dbd3e73de8f504cfad046173e75
+    environment:
+      - JDBC_URL=db
   tunnel:
     container_name: cloudflared-tunnel
     image: cloudflare/cloudflared
