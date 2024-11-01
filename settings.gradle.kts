@@ -1,11 +1,11 @@
 pluginManagement {
-    plugins {
-        kotlin("jvm") version "2.0.20"
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
     }
 }
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
-}
+
 rootProject.name = "homesearch"
 include("osmparser")
 include("addressservice")
+

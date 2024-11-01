@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.0.10"
-    id("io.ktor.plugin") version "2.3.12"
+    kotlin("jvm")
+    id("io.ktor.plugin") version "3.0.1"
 }
 
 group = "com.homesearch.addressservice"
@@ -8,10 +8,6 @@ version = "1.0-SNAPSHOT"
 
 application {
     mainClass.set("com.homesearch.addressservice.ApplicationKt")
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
@@ -23,8 +19,4 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-kotlin {
-    jvmToolchain(21)
 }

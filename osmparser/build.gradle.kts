@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.0.10"
+    kotlin("jvm")
     id("org.flywaydb.flyway") version "10.17.2"
     application
 }
@@ -9,15 +9,8 @@ version = "1.0-SNAPSHOT"
 
 buildscript {
     dependencies {
-        classpath("org.flywaydb:flyway-database-postgresql:10.7.2")
+        classpath("org.flywaydb:flyway-database-postgresql:10.20.1")
     }
-}
-
-repositories {
-    maven {
-        url = uri("https://repo.osgeo.org/repository/release/")
-    }
-    mavenCentral()
 }
 
 application {
@@ -28,16 +21,12 @@ dependencies {
     implementation("org.openstreetmap.osmosis:osmosis-core:0.49.2")
     implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.49.2")
     implementation("org.geotools:gt-geojson:31.3")
-    implementation("org.postgresql:postgresql:42.7.2")
+    implementation("org.postgresql:postgresql:42.7.4")
     implementation(kotlin("stdlib-jdk8"))
 }
 
 tasks.test {
     useJUnitPlatform()
-}
-
-kotlin {
-    jvmToolchain(21)
 }
 
 flyway {
