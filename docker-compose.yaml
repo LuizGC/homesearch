@@ -1,6 +1,6 @@
 services:
   addressservice:
-    image: ghcr.io/luizgc/homesearch@sha256:8a2b707c9d45898f7138980508f0594d69f10dbd3e73de8f504cfad046173e75
+    image: ghcr.io/luizgc/homesearch@sha256:7aaa885f3c75a50a311b5b434b10859f15886c91b01b2f3b7668804fee5fdb84
     environment:
       - JDBC_URL=db
   tunnel:
@@ -15,6 +15,8 @@ services:
     build:
       context: .
       dockerfile: dockerfile-postgis
+    volumes:
+      - /tmp/postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
