@@ -51,7 +51,7 @@ jobs:
         with:
           platforms: linux/arm64
           context: .
-          file: addressservice/Dockerfile
+          file: ./addressservice/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
