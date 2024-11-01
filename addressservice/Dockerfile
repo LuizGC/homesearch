@@ -23,8 +23,8 @@ ENV JAVA_HOME=/jre
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 COPY --from=corretto-jdk /customjre $JAVA_HOME
-COPY --from=0 /app/addressservice/build/libs/app-all.jar /app.jar
+COPY --from=0 /app/addressservice/build/libs/addressservice-all.jar /addressservice.jar
 
-ENTRYPOINT ["/jre/bin/java", "-jar", "app.jar"]
+ENTRYPOINT ["/jre/bin/java", "-jar", "addressservice.jar"]
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
 
