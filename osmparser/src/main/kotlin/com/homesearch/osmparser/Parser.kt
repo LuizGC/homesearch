@@ -10,6 +10,8 @@ import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
 
 fun main() {
+    Class.forName("org.postgresql.Driver")
+
     val cleanDB = CleanDB()
     cleanDB.cleanAllTables()
 

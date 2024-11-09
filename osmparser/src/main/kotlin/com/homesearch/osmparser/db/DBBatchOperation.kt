@@ -4,20 +4,15 @@ import java.sql.DriverManager
 import java.sql.PreparedStatement
 import kotlin.use
 
+private const val JDBC_URL = "jdbc:postgresql://localhost:5432/homesearch_db"
+private const val USER_NAME = "admin"
+private const val PASSWORD = "admin"
+
 class DBBatchOperation(val insertSql: String) {
 
-    object DbConstants {
-        init {
-            Class.forName("org.postgresql.Driver")
-        }
-
-        const val JDBC_URL = "jdbc:postgresql://localhost:5432/homesearch_db"
-        const val USER_NAME = "admin"
-        const val PASSWORD = "admin"
-    }
-
     fun run(batchOperation: (PreparedStatement) -> Unit) {
-        DriverManager.getConnection(DbConstants.JDBC_URL, DbConstants.USER_NAME, DbConstants.PASSWORD).use { conn ->
+
+        DriverManager.getConnection(JDBC_URL, USER_NAME, PASSWORD).use { conn ->
             conn.autoCommit = false
             val pstmt = conn.prepareStatement(insertSql)
 
