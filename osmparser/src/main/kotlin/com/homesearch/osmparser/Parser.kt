@@ -1,10 +1,10 @@
 package com.homesearch.osmparser
 
-import com.homesearch.osmparser.action.delete.CleanDB
-import com.homesearch.osmparser.action.insert.AddressBulkInserter
-import com.homesearch.osmparser.action.insert.ConvenienceStoreBulkInserter
-import com.homesearch.osmparser.action.insert.PublicTransportationBulkInserter
-import com.homesearch.osmparser.action.insert.SupermarketBulkInserter
+import com.homesearch.common.db.CleanDB
+import com.homesearch.osmparser.handlers.AddressBulkHandler
+import com.homesearch.osmparser.handlers.ConvenienceStoreBulkHandler
+import com.homesearch.osmparser.handlers.PublicTransportationBulkHandler
+import com.homesearch.osmparser.handlers.SupermarketBulkHandler
 import com.homesearch.osmparser.osmdata.AddressSink
 import org.openstreetmap.osmosis.pbf2.v0_6.PbfReader
 import java.io.File
@@ -21,15 +21,15 @@ fun main() {
     osmosisReader.setSink(addressSink)
     osmosisReader.run()
 
-    val addressBulkInserter = AddressBulkInserter()
-    addressBulkInserter.bulkInsert(addressSink)
+    val addressBulkHandler = AddressBulkHandler()
+    addressBulkHandler.bulkInsert(addressSink)
 
-    val supermarketBulkInserter = SupermarketBulkInserter()
-    supermarketBulkInserter.bulkInsert(addressSink)
+    val supermarketBulkHandler = SupermarketBulkHandler()
+    supermarketBulkHandler.bulkInsert(addressSink)
 
-    val convenienceStoreBulkInserter = ConvenienceStoreBulkInserter()
-    convenienceStoreBulkInserter.bulkInsert(addressSink)
+    val convenienceStoreBulkHandler = ConvenienceStoreBulkHandler()
+    convenienceStoreBulkHandler.bulkInsert(addressSink)
 
-    val publicTransportationBulkInserter = PublicTransportationBulkInserter()
-    publicTransportationBulkInserter.bulkInsert(addressSink)
+    val publicTransportationBulkHandler = PublicTransportationBulkHandler()
+    publicTransportationBulkHandler.bulkInsert(addressSink)
 }

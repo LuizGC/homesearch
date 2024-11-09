@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.ir.backend.js.compile
+
 plugins {
     kotlin("jvm")
     application
@@ -14,8 +16,7 @@ dependencies {
     implementation("org.openstreetmap.osmosis:osmosis-core:0.49.2")
     implementation("org.openstreetmap.osmosis:osmosis-pbf2:0.49.2")
     implementation("org.geotools:gt-geojson:31.3")
-    implementation("org.postgresql:postgresql:42.7.4")
-    implementation("org.flywaydb:flyway-database-postgresql:10.20.1")
+    implementation(project(":database"))
     implementation(kotlin("stdlib-jdk8"))
 }
 

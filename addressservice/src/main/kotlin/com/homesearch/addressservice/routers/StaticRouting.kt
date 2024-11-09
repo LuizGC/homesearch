@@ -1,4 +1,4 @@
-package com.homesearch.addressservice.plugins
+package com.homesearch.addressservice.routers
 
 import io.ktor.server.application.Application
 import io.ktor.server.http.content.staticResources

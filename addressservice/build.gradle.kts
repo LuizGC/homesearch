@@ -18,8 +18,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-server-host-common-jvm")
-    implementation("org.postgresql:postgresql:42.7.4")
-    testImplementation(kotlin("test"))
+    implementation(project(":database"))
     implementation(kotlin("stdlib-jdk8"))
 }
 

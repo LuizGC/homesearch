@@ -1,13 +1,13 @@
-package com.homesearch.osmparser.action.insert
+package com.homesearch.osmparser.handlers
 
-import com.homesearch.osmparser.db.DBBatchOperation
+import com.homesearch.common.db.DBBatchOperation
 import com.homesearch.osmparser.osmdata.AddressSink
 import org.locationtech.jts.geom.Point
 
 private const val INSERT_QUERY =
     "INSERT INTO ADDRESSES(street, \"number\", city, location)  VALUES (?, ?, ?, ST_SetSRID(ST_Makepoint(?, ?), 4326)) ON CONFLICT DO NOTHING;"
 
-class AddressBulkInserter {
+class AddressBulkHandler {
 
     val bulkInsert = DBBatchOperation(INSERT_QUERY)
 

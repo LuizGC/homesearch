@@ -1,12 +1,12 @@
-package com.homesearch.osmparser.action.insert
+package com.homesearch.osmparser.handlers
 
-import com.homesearch.osmparser.db.DBBatchOperation
+import com.homesearch.common.db.DBBatchOperation
 import com.homesearch.osmparser.osmdata.AddressSink
 
 private const val INSERT_QUERY =
     "INSERT INTO CONVENIENCE_STORES(name, address_id)  VALUES (?, (select a.id from addresses a where street=? and number=? and city=?)) ON CONFLICT DO NOTHING;"
 
-class ConvenienceStoreBulkInserter {
+class ConvenienceStoreBulkHandler {
 
     val bulkInsert = DBBatchOperation(INSERT_QUERY)
 

@@ -1,7 +1,7 @@
 package com.homesearch.addressservice
 
-import com.homesearch.addressservice.plugins.configureStaticFile
-import com.homesearch.addressservice.plugins.configureCityRouting
+import com.homesearch.addressservice.routers.configureStaticFile
+import com.homesearch.addressservice.routers.configureCityRouting
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
