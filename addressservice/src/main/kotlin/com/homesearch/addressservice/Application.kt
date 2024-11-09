@@ -10,7 +10,6 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 
 fun main() {
-    Class.forName("org.postgresql.Driver")
     embeddedServer(Netty, port = 8080, module = Application::module, watchPaths = listOf("classes"))
         .start(wait = true)
 }

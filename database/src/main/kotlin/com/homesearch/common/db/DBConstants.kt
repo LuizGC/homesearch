@@ -6,13 +6,15 @@ class DBConstants {
         private val JDBC_URL = "jdbc:postgresql://${DB_HOST}:5432/homesearch_db"
         private val USERNAME = System.getenv("USERNAME") ?: "admin"
         private val PASSWORD = System.getenv("PASSWORD") ?: "admin"
-
+        init {
+            Class.forName("org.postgresql.Driver")
+        }
         fun getJDBCUrl(): String {
             return JDBC_URL
         }
 
         fun getUsername(): String {
-            return USERNAME;
+            return USERNAME
         }
 
         fun getPassword(): String {
