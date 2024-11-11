@@ -1,4 +1,4 @@
-  function initMap(mapElementId) {
+function initMap(mapElementId) {
     const map = L.map(mapElementId, {
         attributionControl: false,
         zoomControl: false
@@ -14,4 +14,4 @@
     map.addLayer(baseMap);
 
     return map;
-  }
+}

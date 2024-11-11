@@ -7,15 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Find Good Address to Live</title>
-    
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-        <link rel="stylesheet" href="css/map.css"/>
+    <link rel="stylesheet" href="css/map.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <link rel="stylesheet" href="css/select.css" />
+
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script src="js/citySelect.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/distanceSelect.js"></script>
 
     <style>
         html,
@@ -25,11 +30,22 @@
         }
 
         #filter-section {
-            position: absolute;
-            top: 10px;
-            left: 10px;
+            position: fixed;
+            top: 0px;
+            padding: 20px;
+            margin: 0px;
             background-color: white;
             z-index: 999;
+            width: 300px;
+            width: calc(100%-20px);
+        }
+
+        #find-button {
+            text-align: center;
+        }
+
+        select {
+            width: 100%;
         }
     </style>
 
@@ -39,11 +55,38 @@
 <body>
     <div id="map"></div>
     <section id="filter-section">
-        <label for="city-select">Choose a city:</label>
-        <select name="cities" id="city-select"></select>
+        <fieldset>
+            <legend>Location</legend>
+            <label for="city-select">Choose a city: </label>
+            <select name="cities" id="city-select"></select>
+        </fieldset>
+        <br />
+        <fieldset id="distance-fieldset">
+            <legend>Choose Distance by minutes on foot</legend>
+            <label for="public-transportation-select">Public Transportation: </label>
+            <select name="public-transportation" id="public-transportation-select">
+            </select>
+            <br />
+            <br />
+            <label for="convenience-store-select">Convenience Store: </label>
+            <select name="convenience-store" id="convenience-store-select">
+            </select>
+            <br />
+            <br />
+            <label for="supermarket-select">Supermarket: </label>
+            <select name="supermarket" id="supermarket-select">
+            </select>
+        </fieldset>
+        <br>
+        <div id="find-button">
+            <button class="button-61" role="button">Find your Address</button>
+        </div>
     </section>
     <script>
         populateCitySelect(document.getElementById("city-select"));
+        populateDistanceSelect(document.getElementById("public-transportation-select"));
+        populateDistanceSelect(document.getElementById("convenience-store-select"));
+        populateDistanceSelect(document.getElementById("supermarket-select"));
         initMap("map")
     </script>
 
