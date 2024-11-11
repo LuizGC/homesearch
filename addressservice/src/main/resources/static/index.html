@@ -21,6 +21,7 @@
     <script src="js/citySelect.js"></script>
     <script src="js/map.js"></script>
     <script src="js/distanceSelect.js"></script>
+    <script src="js/findGoodAddressesButton.js"></script>
 
     <style>
         html,
@@ -62,7 +63,7 @@
         </fieldset>
         <br />
         <fieldset id="distance-fieldset">
-            <legend>Choose Distance by minutes on foot</legend>
+            <legend>Choose Walking Distance in Minutes</legend>
             <label for="public-transportation-select">Public Transportation: </label>
             <select name="public-transportation" id="public-transportation-select">
             </select>
@@ -79,7 +80,7 @@
         </fieldset>
         <br>
         <div id="find-button">
-            <button class="button-61" role="button">Find your Address</button>
+            <button class="button-61" role="button" onclick="findGoodAddresses()">Find Good Address</button>
         </div>
     </section>
     <script>

@@ -1,5 +1,6 @@
 package com.homesearch.addressservice
 
+import com.homesearch.addressservice.routers.configureAddressesSearch
 import com.homesearch.addressservice.routers.configureStaticFile
 import com.homesearch.addressservice.routers.configureCityRouting
 import io.ktor.serialization.kotlinx.json.json
@@ -20,4 +21,5 @@ fun Application.module() {
     }
     configureStaticFile()
     configureCityRouting()
+    configureAddressesSearch()
 }
