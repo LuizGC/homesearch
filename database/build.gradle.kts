@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation("org.postgresql:postgresql:42.7.4")
-    implementation("org.flywaydb:flyway-database-postgresql:10.20.1")
+    implementation("org.flywaydb:flyway-database-postgresql:11.1.0")
 }
 
 tasks.test {
